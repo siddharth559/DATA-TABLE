@@ -51,6 +51,38 @@ class Table:
         for i in self.keys:
             ret_row = numpy.append(ret_row,self.table[i][row_ind])
         return ret_row
+    def normalise(self, col=None):
+        if col == None:
+            for col in self.keys:
+                self.table[col] = self.table[col]/self.table[col].sum()
+        elif col not in self.keys:
+            print('value not in table')
+        else:
+            self.table[col] = self.table[col]/self.table[col].sum()
+    def convert_float(self,col=None):
+        if col == None:
+            for col in self.keys:
+                self.table[col] = numpy.array([float(i) for i in self.table[col]])
+        elif col not in self.keys:
+            print('col not in table')
+        else:
+            self.table[col] = numpy.array([float(i) for i in self.table[col]])
+    def convert_int(self,col):
+        if col == None:
+            for col in self.keys:
+                self.table[col] = numpy.array([int(i) for i in self.table[col]])
+        elif col not in self.keys:
+            print('col not in table')
+        else:
+            self.table[col] = numpy.array([int(i) for i in self.table[col]])
+    def convert_str(self,col):
+        if col == None:
+            for col in self.keys:
+                self.table[col] = numpy.array([str(i) for i in self.table[col]])
+        elif col not in self.keys:
+            print('col not in table')
+        else:
+            self.table[col] = numpy.array([str(i) for i in self.table[col]])
     def sort(self,col):
         if col not in self.keys:
             print('value not in table')
